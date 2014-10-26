@@ -1,0 +1,20 @@
+Options Indexes
+
+IndexIgnore *.sh *.rrd *.php HEADER.html README.html
+IndexOrderDefault Ascending Description
+IndexOptions +SuppressColumnSorting +IgnoreClient +XHTML +SuppressHTMLPreamble 
+ServerSignature Off
+
+AddDescription '<span style="display:none">1:pdp1:24h@5m</span>' */day
+AddDescription '<span style="display:none">2:pdp1:24h@5m</span>' */2day
+AddDescription '<span style="display:none">3:pdp1:24h@5m</span>' */4day
+AddDescription '<span style="display:none">4:pdp3:7d@15m</span>' */week
+AddDescription '<span style="display:none">5:pdp3:7d@15m</span>' */2week
+AddDescription '<span style="display:none">6:pdp12:31d@1h</span>' */month
+AddDescription '<span style="display:none">7:pdp12:31d@1h</span>' */3month
+AddDescription '<span style="display:none">8:pdp12:31d@1h</span>' */6month
+AddDescription '<span style="display:none">9:pdp72:370d@6h</span>' */year
+
+AddDescription "Line graph" acc.png
+AddDescription "Stacked area graph" acc-stack.png
+
