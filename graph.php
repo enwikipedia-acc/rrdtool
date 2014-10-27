@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-chdir( "/home/stwalkerster/rrd/acc-new" );
+chdir( "/data/project/application/development/graph" );
 
 $defs = "DEF:open=acc.rrd:open:AVERAGE DEF:admin=acc.rrd:admin:AVERAGE DEF:cu=acc.rrd:checkuser:AVERAGE DEF:hold=acc.rrd:hold:AVERAGE";
 
@@ -50,6 +50,8 @@ $graphs = array(
 );
 
 foreach( $times as $slug => $tdata ) {
+	@mkdir($slug,0777,true);
+
 	$date = $tdata["date"];
 	$title = $tdata["title"];
 

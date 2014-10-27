@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/stwalkerster/rrd/acc-new/
+cd /data/project/application/development/graph
 
 wget --no-check-certificate -O status.xml -o /dev/null https://accounts.wmflabs.org/api.php?action=status
 
@@ -21,4 +21,4 @@ rrdval=$rrdval":"
 rrdval=$rrdval$hold
 
 #echo $rrdval;
-rrdtool update /home/stwalkerster/rrd/acc-new/acc.rrd $rrdval
+rrdtool update /data/project/application/development/graph/acc.rrd $rrdval
