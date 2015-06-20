@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd /data/project/application/development/graph
+cd /srv/dev/graph
 
-wget --no-check-certificate -O status.xml -o /dev/null https://accounts.wmflabs.org/api.php?action=status
+wget --no-check-certificate -O status.xml -o /dev/null http://accounts-appserver4.eqiad.wmflabs/api.php?action=status
 
 cat status.xml | sed "s/</\r\n</g" | grep status | sed "s/ /\n/g" | sed "s/\"\/>/\"/" | grep -v "<status" | head -n4 |sed "s/\"//g" > values
 rm status.xml
@@ -21,4 +21,4 @@ rrdval=$rrdval":"
 rrdval=$rrdval$hold
 
 #echo $rrdval;
-rrdtool update /data/project/application/development/graph/acc.rrd $rrdval
+rrdtool update /srv/dev/graph/acc.rrd $rrdval

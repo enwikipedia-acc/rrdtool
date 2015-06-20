@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-chdir( "/data/project/application/development/graph" );
+chdir( "/srv/dev/graph" );
 
 $defs = "DEF:open=acc.rrd:open:AVERAGE DEF:admin=acc.rrd:admin:AVERAGE DEF:cu=acc.rrd:checkuser:AVERAGE DEF:hold=acc.rrd:hold:AVERAGE";
 
