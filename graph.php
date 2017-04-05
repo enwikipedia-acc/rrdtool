@@ -1,9 +1,9 @@
 #!/usr/bin/php
 <?php
 
-chdir( "/srv/dev/graph" );
+chdir( __DIR__ );
 
-$defs = "DEF:open=acc.rrd:open:AVERAGE DEF:admin=acc.rrd:admin:AVERAGE DEF:cu=acc.rrd:checkuser:AVERAGE DEF:hold=acc.rrd:hold:AVERAGE";
+$defs = "DEF:open=acc.rrd:open:AVERAGE DEF:admin=acc.rrd:admin:AVERAGE DEF:cu=acc.rrd:checkuser:AVERAGE DEF:hold=acc.rrd:hold:AVERAGE DEF:proxy=acc.rrd:proxy:AVERAGE";
 
 $times = array(
 	"day" => array(
@@ -42,11 +42,15 @@ $times = array(
 		"date" => "-1year",
 		"title" => "year",
 	),
+/*	"2year" => array(
+		"date" => "-2year",
+		"title" => "2year",
+	),*/
 );
 
 $graphs = array(
-	"acc" => '"LINE2:open#FF0000:Open requests" "LINE2:admin#FF8800:Flagged user requests" "LINE2:cu#00FF00:Checkuser requests" "LINE2:hold#0000FF:Held requests"', // HRULE:235#000000 HRULE:215#000000 HRULE:200#008800 HRULE:50#FF0000',
-	"acc-stack" => '"AREA:open#FF0000:Open requests:STACK" "AREA:admin#FF8800:Flagged user requests:STACK" "AREA:cu#00FF00:Checkuser requests:STACK" "AREA:hold#0000FF:Held requests:STACK"',
+	"acc" => '"LINE2:open#FF0000:Open requests" "LINE2:admin#FF8800:Flagged user requests" "LINE2:cu#00FF00:Checkuser requests" "LINE2:hold#0000FF:Held requests" "LINE2:proxy#FF00FF:Proxy check" HRULE:25#000000', // HRULE:235#000000 HRULE:215#000000 HRULE:200#008800 HRULE:50#FF0000',
+	"acc-stack" => '"AREA:open#FF0000:Open requests:STACK" "AREA:admin#FF8800:Flagged user requests:STACK" "AREA:cu#00FF00:Checkuser requests:STACK" "AREA:hold#0000FF:Held requests:STACK" "AREA:proxy#FF00FF:Proxy check"',
 );
 
 foreach( $times as $slug => $tdata ) {
@@ -56,9 +60,9 @@ foreach( $times as $slug => $tdata ) {
 	$title = $tdata["title"];
 
 	foreach( $graphs as $graph => $lines ) {
-		exec( "rrdtool graph $slug/$graph.png -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "rrdtool graph $slug/$graph.svg -a SVG -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "rrdtool graph $slug/$graph-large.png -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "rrdtool graph $slug/$graph-large.svg -a SVG -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph.png -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph.svg -a SVG -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph-large.png -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph-large.svg -a SVG -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
 	}
 }

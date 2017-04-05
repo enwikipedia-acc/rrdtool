@@ -1,18 +1,21 @@
 
-IndexIgnore *.sh *.rrd *.php HEADER.html README.html
+IndexIgnore *.sh *.rrd *.php HEADER.html README.html README.md
 IndexOrderDefault Ascending Description
 IndexOptions +SuppressColumnSorting +IgnoreClient +XHTML +SuppressHTMLPreamble 
 
-AddDescription '<span style="display:none">1:pdp1:24h@5m</span>' */day
-AddDescription '<span style="display:none">2:pdp1:24h@5m</span>' */2day
-AddDescription '<span style="display:none">3:pdp1:24h@5m</span>' */4day
-AddDescription '<span style="display:none">4:pdp3:7d@15m</span>' */week
-AddDescription '<span style="display:none">5:pdp3:7d@15m</span>' */2week
-AddDescription '<span style="display:none">6:pdp12:31d@1h</span>' */month
-AddDescription '<span style="display:none">7:pdp12:31d@1h</span>' */3month
-AddDescription '<span style="display:none">8:pdp12:31d@1h</span>' */6month
-AddDescription '<span style="display:none">9:pdp72:370d@6h</span>' */year
+AddDescription "Line graph" acc.png acc.svg
+AddDescription "Line graph (large format)" acc-large.png acc-large.svg
+AddDescription "Stacked area graph" acc-stack.png acc-stack.svg
+AddDescription "Stacked area graph (large format)" acc-stack-large.png acc-stack-large.svg
 
-AddDescription "Line graph" acc.png
-AddDescription "Stacked area graph" acc-stack.png
+AddDescription '<span style="display:none">1:pdp1:24h@5m</span> The last 24 hours' */day
+AddDescription '<span style="display:none">2:pdp1:24h@5m</span> The last 48 hours' */2day
+AddDescription '<span style="display:none">3:pdp1:24h@5m</span> The last 96 hours' */4day
+AddDescription '<span style="display:none">4:pdp3:7d@15m</span> The last 7 days' */week
+AddDescription '<span style="display:none">5:pdp3:7d@15m</span> The last 14 days' */2week
+AddDescription '<span style="display:none">6:pdp12:31d@1h</span> The last 30 days' */month
+AddDescription '<span style="display:none">7:pdp12:31d@1h</span> The last 90 days' */3month
+AddDescription '<span style="display:none">8:pdp12:31d@1h</span> The last 6 months' */6month
+AddDescription '<span style="display:none">9:pdp72:370d@6h</span> The last 12 months' */year
+
 
