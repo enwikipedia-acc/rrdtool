@@ -42,10 +42,10 @@ $times = array(
 		"date" => "-1year",
 		"title" => "year",
 	),
-/*	"2year" => array(
+	"2year" => array(
 		"date" => "-2year",
 		"title" => "2year",
-	),*/
+	),
 );
 
 $graphs = array(
