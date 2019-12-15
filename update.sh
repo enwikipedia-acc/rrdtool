@@ -23,4 +23,4 @@ rrdval=$rrdval":"
 rrdval=$rrdval$proxy
 
 #echo $rrdval;
-/opt/rrdtool/bin/rrdtool update acc.rrd $rrdval
+rrdtool update acc.rrd $rrdval
