@@ -60,9 +60,9 @@ foreach( $times as $slug => $tdata ) {
 	$title = $tdata["title"];
 
 	foreach( $graphs as $graph => $lines ) {
-		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph.png -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph.svg -a SVG -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph-large.png -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
-		exec( "/opt/rrdtool/bin/rrdtool graph $slug/$graph-large.svg -a SVG -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "rrdtool graph $slug/$graph.png -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "rrdtool graph $slug/$graph.svg -a SVG -w 800 -h 300 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "rrdtool graph $slug/$graph-large.png -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
+		exec( "rrdtool graph $slug/$graph-large.svg -a SVG -w 1500 -h 650 -s `date -d $date +%s` -e `date +%s` --title 'ACC requests (last $title)' $defs $lines" );
 	}
 }
