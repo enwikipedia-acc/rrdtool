@@ -46,6 +46,18 @@ $times = array(
 		"date" => "-2year",
 		"title" => "2year",
 	),
+        "3year" => array(
+                "date" => "-3year",
+                "title" => "3year",
+        ),
+        "4year" => array(
+                "date" => "-4year",
+                "title" => "4year",
+        ),
+        "5year" => array(
+                "date" => "-5year",
+                "title" => "5year",
+        ),
 );
 
 $graphs = array(
