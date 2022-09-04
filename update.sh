@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")"
 
-wget --no-check-certificate -O status.xml -o /dev/null http://localhost/api.php?action=status
+wget --no-check-certificate -O status.xml -o /dev/null https://accounts.wmflabs.org/api.php?action=status
 
 cat status.xml | sed "s/</\r\n</g" | grep status | sed "s/ /\n/g" | sed "s/\"\/>/\"/" | grep -v "<status" | head -n5 |sed "s/\"//g" > values
 rm status.xml
