@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
+cd "${DATA_DIR:-$(dirname "$0")}"
 
 wget --no-check-certificate -O status.xml -o /dev/null https://accounts.wmflabs.org/api.php?action=status
 
