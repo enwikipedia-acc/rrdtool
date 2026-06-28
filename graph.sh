@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "${DATA_DIR:-$(dirname "$0")}"
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+cd "${DATA_DIR:-$script_dir}"
 
 defs=(
     DEF:open=acc.rrd:open:AVERAGE
@@ -40,6 +41,10 @@ generate() {
     rrdtool graph "$dir/$graph-large.svg" -a SVG -w 1500 -h 650 -s "$start" -e "$end" --title "$title" "$@"
 }
 
+outdir="${OUTPUT_PREFIX:-.}"
+mkdir -p "$outdir"
+cp "$script_dir/index.html" "$outdir/index.html"
+
 for i in "${!time_slugs[@]}"; do
     slug="${OUTPUT_PREFIX:-}${time_slugs[$i]}"
     date_arg="${time_dates[$i]}"
@@ -51,4 +56,27 @@ for i in "${!time_slugs[@]}"; do
 
     generate "$slug" acc       "$start" "$end" "ACC requests (last $title)" "${defs[@]}" "${acc_lines[@]}"
     generate "$slug" acc-stack "$start" "$end" "ACC requests (last $title)" "${defs[@]}" "${acc_stack_lines[@]}"
+
+    cat > "$slug/index.html" << HTMLEOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ACC Request Graphs — last $title</title>
+</head>
+<body>
+  <h1>ACC Request Graphs</h1>
+  <p><a href="../">← All time periods</a></p>
+  <h2>Last $title</h2>
+  <h3>Line graph</h3>
+  <p><a href="acc.png"><img src="acc.png" alt="Line graph — last $title" width="800" height="300"></a></p>
+  <p><a href="acc.svg">SVG</a> · <a href="acc-large.png">Large PNG</a> · <a href="acc-large.svg">Large SVG</a></p>
+  <h3>Stacked area graph</h3>
+  <p><a href="acc-stack.png"><img src="acc-stack.png" alt="Stacked area graph — last $title" width="800" height="300"></a></p>
+  <p><a href="acc-stack.svg">SVG</a> · <a href="acc-stack-large.png">Large PNG</a> · <a href="acc-stack-large.svg">Large SVG</a></p>
+  <hr>
+  <p>Source code: <a href="https://github.com/enwikipedia-acc/rrdtool/">https://github.com/enwikipedia-acc/rrdtool/</a></p>
+</body>
+</html>
+HTMLEOF
 done
